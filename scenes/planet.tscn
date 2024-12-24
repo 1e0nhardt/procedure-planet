@@ -1,0 +1,159 @@
+[gd_scene load_steps=28 format=3 uid="uid://clfe1ldj35mgx"]
+
+[ext_resource type="Script" path="res://scenes/planet.gd" id="1_8bvng"]
+[ext_resource type="Shader" path="res://scenes/planet.gdshader" id="2_o08pc"]
+[ext_resource type="Script" path="res://scripts/noise_settings.gd" id="2_qxqal"]
+[ext_resource type="Script" path="res://scripts/shape_settings.gd" id="2_v43rn"]
+[ext_resource type="Script" path="res://scripts/layered_fast_noise.gd" id="3_dbmyj"]
+[ext_resource type="Script" path="res://scripts/biome_color_settings.gd" id="3_v4r5p"]
+
+[sub_resource type="Gradient" id="Gradient_kdcoj"]
+offsets = PackedFloat32Array(0, 0.810811, 0.936937, 1)
+colors = PackedColorArray(0, 0.0588235, 0.843137, 1, 0, 0.0588235, 0.843137, 1, 0.0613069, 0.115065, 0.835449, 1, 0.344, 0.3744, 0.8, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w8e6r"]
+gradient = SubResource("Gradient_kdcoj")
+
+[sub_resource type="Image" id="Image_ggqk3"]
+data = {
+"data": PackedByteArray(197, 187, 129, 158, 192, 130, 135, 196, 130, 139, 196, 130, 143, 197, 131, 146, 197, 131, 150, 197, 131, 154, 198, 131, 158, 198, 131, 162, 198, 131, 166, 199, 131, 169, 199, 131, 173, 199, 131, 177, 200, 132, 181, 200, 132, 185, 201, 132, 189, 201, 132, 192, 201, 132, 196, 202, 132, 200, 202, 132, 204, 202, 132, 208, 203, 132, 207, 201, 132, 205, 197, 131, 202, 194, 130, 200, 191, 130, 197, 187, 129, 195, 184, 128, 192, 181, 127, 190, 178, 127, 187, 174, 126, 186, 173, 125, 185, 171, 125, 183, 169, 125, 182, 168, 124, 181, 166, 124, 180, 164, 123, 178, 163, 123, 177, 161, 123, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 176, 160, 122, 166, 116, 28, 108, 124, 30, 73, 129, 31, 78, 129, 31, 84, 130, 31, 90, 131, 31, 96, 131, 31, 101, 132, 31, 107, 132, 32, 113, 133, 32, 119, 133, 32, 124, 134, 32, 130, 134, 32, 136, 135, 32, 141, 135, 33, 147, 136, 33, 153, 136, 33, 159, 137, 33, 164, 137, 33, 170, 138, 33, 176, 138, 34, 182, 139, 34, 182, 137, 33, 180, 133, 32, 178, 129, 31, 175, 125, 30, 173, 121, 30, 170, 117, 29, 168, 113, 28, 166, 109, 27, 163, 105, 26, 161, 101, 25, 159, 98, 24, 156, 94, 23, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 154, 90, 22, 191, 179, 110, 145, 185, 111, 117, 190, 111, 121, 190, 112, 126, 190, 112, 131, 191, 112, 135, 191, 112, 140, 192, 112, 144, 192, 112, 149, 193, 112, 153, 193, 112, 158, 193, 113, 163, 194, 113, 167, 194, 113, 172, 195, 113, 176, 195, 113, 181, 195, 113, 185, 196, 113, 190, 196, 114, 194, 197, 114, 199, 197, 114, 204, 198, 114, 203, 194, 113, 199, 189, 112, 195, 184, 111, 191, 179, 109, 187, 174, 108, 183, 168, 107, 179, 163, 106, 175, 158, 104, 171, 153, 103, 167, 148, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102, 166, 147, 102),
+"format": "RGB8",
+"height": 3,
+"mipmaps": false,
+"width": 64
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_gj3so"]
+image = SubResource("Image_ggqk3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sy8ta"]
+render_priority = 0
+shader = ExtResource("2_o08pc")
+shader_parameter/min_elevation = -0.245146
+shader_parameter/max_elevation = 0.144855
+shader_parameter/planet_texture = SubResource("ImageTexture_gj3so")
+shader_parameter/ocean_texture = SubResource("GradientTexture1D_w8e6r")
+
+[sub_resource type="Gradient" id="Gradient_e8k56"]
+offsets = PackedFloat32Array(0, 0.026087, 0.33913, 0.478261, 0.617391)
+colors = PackedColorArray(0.659091, 0.584284, 0.144318, 1, 0.1807, 0.65, 0.156, 1, 0.75, 0.701875, 0.1725, 1, 0.581897, 0.484433, 0.120388, 1, 0.5, 0.3785, 0.095, 1)
+
+[sub_resource type="Gradient" id="Gradient_te4av"]
+offsets = PackedFloat32Array(0, 0.026087, 0.33913, 0.53913)
+colors = PackedColorArray(0.659091, 0.584284, 0.144318, 1, 0.1807, 0.65, 0.156, 1, 0.75, 0.701875, 0.1725, 1, 0.6, 0.4542, 0.114, 1)
+
+[sub_resource type="Gradient" id="Gradient_d2og6"]
+offsets = PackedFloat32Array(0, 0.026087, 0.33913, 0.495652)
+colors = PackedColorArray(0.659091, 0.584284, 0.144318, 1, 0.1807, 0.65, 0.156, 1, 0.75, 0.701875, 0.1725, 1, 0.5, 0.3785, 0.095, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1t0un"]
+noise_type = 3
+frequency = 0.0443
+offset = Vector3(116.28, 4.45, 1.15)
+fractal_octaves = 6
+
+[sub_resource type="Resource" id="Resource_kt4ol"]
+script = ExtResource("3_v4r5p")
+biome_noise = SubResource("FastNoiseLite_1t0un")
+biome_noise_strength = 0.16
+biome_noise_offset = 0.0
+blend_amount = 0.12
+biome_amount = 3
+biome_0/gradient = SubResource("Gradient_e8k56")
+biome_0/tint = Color(0.9, 0.9, 0.9, 1)
+biome_0/start_height = 0.0
+biome_0/tint_percent = 0.48
+biome_1/gradient = SubResource("Gradient_te4av")
+biome_1/tint = Color(0.625575, 6.97896e-07, 3.85046e-07, 1)
+biome_1/start_height = 0.15
+biome_1/tint_percent = 0.22
+biome_2/gradient = SubResource("Gradient_d2og6")
+biome_2/tint = Color(0.9, 0.9, 0.9, 1)
+biome_2/start_height = 0.85
+biome_2/tint_percent = 0.38
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ffwv2"]
+noise_type = 3
+frequency = 0.067
+offset = Vector3(2, -62.07, -270.3)
+fractal_octaves = 8
+
+[sub_resource type="Resource" id="Resource_3k14x"]
+script = ExtResource("2_qxqal")
+strength = 0.15
+sample_radius = 25.0
+noise = SubResource("FastNoiseLite_ffwv2")
+min_value = 0.12
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q1k8r"]
+noise_type = 0
+frequency = 0.0545
+offset = Vector3(24, 74.07, 148.15)
+fractal_type = 2
+fractal_octaves = 8
+
+[sub_resource type="Resource" id="Resource_eq54b"]
+script = ExtResource("2_qxqal")
+strength = 0.2
+sample_radius = 25.0
+noise = SubResource("FastNoiseLite_q1k8r")
+min_value = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3vv0u"]
+frequency = 0.0051
+offset = Vector3(100, 123.45, 0)
+fractal_type = 2
+fractal_octaves = 8
+
+[sub_resource type="Resource" id="Resource_y3227"]
+script = ExtResource("2_qxqal")
+strength = 0.4
+sample_radius = 10.0
+noise = SubResource("FastNoiseLite_3vv0u")
+min_value = 0.0
+
+[sub_resource type="Resource" id="Resource_1jt5e"]
+script = ExtResource("3_dbmyj")
+layer_amount = 3
+enabled_layer = 7
+use_first_layer_as_mask = 6
+noise_layer_0 = SubResource("Resource_3k14x")
+noise_layer_1 = SubResource("Resource_eq54b")
+noise_layer_2 = SubResource("Resource_y3227")
+
+[sub_resource type="Resource" id="Resource_c8qq7"]
+script = ExtResource("2_v43rn")
+radius = 10.0
+layered_noises = SubResource("Resource_1jt5e")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvd5s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_cm8u8"]
+sky_material = SubResource("ProceduralSkyMaterial_yvd5s")
+
+[sub_resource type="Environment" id="Environment_8j1xd"]
+background_mode = 2
+sky = SubResource("Sky_cm8u8")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Planet" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0744457)
+script = ExtResource("1_8bvng")
+resolution = 80
+planet_material = SubResource("ShaderMaterial_sy8ta")
+biome_settings = SubResource("Resource_kt4ol")
+shape_settings = SubResource("Resource_c8qq7")
+render_mask = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8j1xd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.21708)
